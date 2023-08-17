@@ -4,24 +4,25 @@ spring:
       active-directory:
         enabled: true
         profile:
-          tenant-id: ${TENANT}
+          tenant-id: ${TENANT_ID}
         credential:
-          client-id: ${clientId}
-          client-secret: ${clientSecret}
+          client-id: ${CLIENT_ID}
+          client-secret: ${CLIENT_SECRET}
         user-group:
           allowed-group-names: Admins,Developers
       keyvault:
         secret:
          property-sources[0]:
-           endpoint: https://skillupkvyevheniiahonch.vault.azure.net/
+           endpoint: ${KEY_VAULT_URI}
         enabled: true
   data:
     mongodb:
       database: skillup-db
-      uri: ${MONGO-CONNECTION-URI:}
+      uri: ${mongoConnectionUri}
+
 
 server:
   forward-headers-strategy: native
   port: 8080
-
-  #vault, add roles, deploy app, read article LDAP + istio
+  servlet:
+    context-path: /skillup
