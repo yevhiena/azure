@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    azure:
+      active-directory:
+        enabled: true
+        profile:
+          tenant-id: ${TENANT}
+        credential:
+          client-id: ${clientId}
+          client-secret: ${clientSecret}
+        user-group:
+          allowed-group-names: Admins,Developers
+      keyvault:
+        secret:
+         property-sources[0]:
+           endpoint: https://skillupkvyevheniiahonch.vault.azure.net/
+        enabled: true
+  data:
+    mongodb:
+      database: skillup-db
+      uri: ${MONGO-CONNECTION-URI:}
+
+server:
+  forward-headers-strategy: native
+  port: 8080
+
+  #vault, add roles, deploy app, read article LDAP + istio
